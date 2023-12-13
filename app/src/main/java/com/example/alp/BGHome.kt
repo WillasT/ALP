@@ -71,8 +71,6 @@ fun bgHome() {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .offset(y = 300.dp)
-                    .rotate(20f)
                     .background(Color.White)
             ) {
                 Text(text = "kjhfkjsfsf")
