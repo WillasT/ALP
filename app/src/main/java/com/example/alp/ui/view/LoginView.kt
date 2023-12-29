@@ -34,6 +34,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -358,6 +359,9 @@ fun CustomEmailField(
                 color = textfilecol
             )
         },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = buttonColor,
+        ),
         keyboardOptions = keyboardOptions,
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
@@ -394,6 +398,9 @@ fun CustomPasswordField(
                 text = text
             )
         },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = buttonColor,
+        ),
         keyboardOptions = keyboardOptions,
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
