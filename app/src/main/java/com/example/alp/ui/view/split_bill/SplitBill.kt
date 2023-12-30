@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -44,15 +45,15 @@ import com.example.alp.R
 import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.defblue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Shape
 import com.example.alp.ui.theme.background
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SplitBill() {
-
-    LazyColumn(Modifier.fillMaxWidth()) {
+    LazyColumn(Modifier.fillMaxWidth().background(Color.White)) {
         item {
-            Navbar()
+            MainNavbar()
         }
         item {
             ActionBar()
@@ -61,7 +62,7 @@ fun SplitBill() {
 }
 
 @Composable
-fun Navbar() {
+fun MainNavbar() {
     Row(
         Modifier
             .fillMaxWidth()
@@ -77,7 +78,7 @@ fun Navbar() {
             text = "Split Bill",
             fontWeight = FontWeight.SemiBold,
             fontFamily = Poppins,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.width(95.dp))
@@ -99,13 +100,13 @@ fun ActionBar() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 20.dp, start = 35.dp, end = 35.dp)
+                .padding(top = 20.dp, start = 42.dp, end = 42.dp)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .size(300.dp)
+                    .size(200.dp)
                     .background(
                         color = Color.LightGray, shape = RoundedCornerShape(40.dp)
                     ), contentAlignment = Alignment.Center
@@ -118,7 +119,7 @@ fun ActionBar() {
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.White, shape = RoundedCornerShape(40.dp)
                                 )
@@ -136,7 +137,7 @@ fun ActionBar() {
                         }
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.LightGray, shape = RoundedCornerShape(40.dp)
                                 )
@@ -161,7 +162,7 @@ fun ActionBar() {
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.LightGray, shape = RoundedCornerShape(40.dp)
                                 )
@@ -179,7 +180,7 @@ fun ActionBar() {
                         }
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.White, shape = RoundedCornerShape(40.dp)
                                 )
@@ -204,7 +205,7 @@ fun ActionBar() {
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.White, shape = RoundedCornerShape(40.dp)
                                 )
@@ -222,7 +223,7 @@ fun ActionBar() {
                         }
                         Box(
                             modifier = Modifier
-                                .size(width = 140.dp, height = 35.dp)
+                                .size(width = 130.dp, height = 35.dp)
                                 .background(
                                     color = Color.LightGray, shape = RoundedCornerShape(40.dp)
                                 )
@@ -243,7 +244,7 @@ fun ActionBar() {
             }
         }
         if (activeClicked) {
-            ActiveFrame()
+                ActiveFrame()
         } else if (historyClicked) {
             HistoryFrame()
         } else {
@@ -265,69 +266,76 @@ fun ActiveFrame() {
             fontFamily = Poppins,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 25.dp),
-            fontSize = 16.sp
+            fontSize = 14.sp
         )
-        OutlinedCard(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp),
-            colors = CardDefaults.outlinedCardColors(
-                containerColor = Color.White
-            ),
-            border = BorderStroke(0.5.dp, Color.Gray),
-        ) {
-            Column {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxSize()
+        ActiveCard()
+    }
+}
+
+@Composable
+fun ActiveCard(){
+    OutlinedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(165.dp),
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = Color.White
+        ),
+        border = BorderStroke(0.5.dp, Color.LightGray), shape = RoundedCornerShape(5.dp)
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Column(
+                    modifier = Modifier.padding(horizontal = 18.dp)
                 ) {
-                    Column(
-                        modifier = Modifier.padding(horizontal = 18.dp)
-                    ) {
+                    Text(
+                        text = "HAIDILAO",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        fontFamily = Poppins
+                    )
+                    Text(
+                        text = "08/02/2023 07:25",
+                        color = Color(0xFF888888),
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 10.sp,
+                        fontFamily = Poppins,
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
+                    Text(
+                        text = "Rp 200.781",
+                        color = defblue,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 13.sp,
+                        fontFamily = Poppins,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Divider(
+                        thickness = 0.5.dp,
+                        color = Color.LightGray,
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(85.dp)) {
                         Text(
-                            text = "HAIDILAO",
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            fontFamily = Poppins
-                        )
-                        Text(
-                            text = "08/02/2023 07:25",
-                            color = Color(0xFF888888),
-                            fontWeight = FontWeight.Normal,
+                            text = "11 items • 6 persons",
+                            fontFamily = Poppins,
                             fontSize = 10.sp,
-                            fontFamily = Poppins,
-                            modifier = Modifier.padding(bottom = 10.dp)
+                            color = Color(0xFF888888)
                         )
-                        Text(
-                            text = "Rp 200.781",
-                            color = defblue,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 14.sp,
-                            fontFamily = Poppins,
-                            modifier = Modifier.padding(bottom = 8.dp)
-                        )
-                        Divider(
-                            thickness = 0.5.dp,
-                            color = Color.LightGray,
-                            modifier = Modifier.padding(bottom = 10.dp)
-                        )
-                        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-                            Text(
-                                text = "11 items • 6 persons",
-                                fontFamily = Poppins,
-                                fontSize = 11.sp,
-                                color = Color(0xFF888888)
-                            )
-                            Button(
-                                onClick = { /*TODO*/ },
-                                modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 50.dp),
-                                colors = ButtonDefaults.buttonColors(
-                                    defblue
-                                )
-                            ) {
-                                Text(text = "See Detail", fontFamily = Poppins, fontSize = 11.sp)
-                            }
+                        Button(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier
+                                .width(85.dp)
+                                .height(30.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                defblue
+                            ), contentPadding = PaddingValues(5.dp)
+                        ) {
+                            Text(text = "See Detail", fontFamily = Poppins, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
@@ -335,7 +343,6 @@ fun ActiveFrame() {
         }
     }
 }
-
 @Composable
 fun HistoryFrame() {
     Column(
@@ -351,67 +358,75 @@ fun HistoryFrame() {
             modifier = Modifier.padding(top = 25.dp),
             fontSize = 16.sp
         )
-        OutlinedCard(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp),
-            colors = CardDefaults.outlinedCardColors(
-                containerColor = Color.White
-            ),
-            border = BorderStroke(0.5.dp, Color.Gray),
-        ) {
-            Column {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxSize()
+        HistoryCard()
+    }
+}
+
+@Composable
+fun HistoryCard(){
+    OutlinedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(180.dp),
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = Color.White
+        ),
+        border = BorderStroke(0.5.dp, Color.Gray),
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Column(
+                    modifier = Modifier.padding(horizontal = 18.dp)
                 ) {
-                    Column(
-                        modifier = Modifier.padding(horizontal = 18.dp)
-                    ) {
+                    Text(
+                        text = "YOSHINOYA",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        fontFamily = Poppins
+                    )
+                    Text(
+                        text = "08/02/2023 07:25",
+                        color = Color(0xFF888888),
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 10.sp,
+                        fontFamily = Poppins,
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
+                    Text(
+                        text = "Rp 121.381",
+                        color = defblue,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        fontFamily = Poppins,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Divider(
+                        thickness = 0.5.dp,
+                        color = Color.LightGray,
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
+                    Row(horizontalArrangement = Arrangement.SpaceEvenly) {
                         Text(
-                            text = "YOSHINOYA",
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            fontFamily = Poppins
-                        )
-                        Text(
-                            text = "08/02/2023 07:25",
-                            color = Color(0xFF888888),
-                            fontWeight = FontWeight.Normal,
-                            fontSize = 10.sp,
+                            text = "3 items • 2 persons",
                             fontFamily = Poppins,
-                            modifier = Modifier.padding(bottom = 10.dp)
+                            fontSize = 11.sp,
+                            color = Color(0xFF888888)
                         )
-                        Text(
-                            text = "Rp 121.381",
-                            color = defblue,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 14.sp,
-                            fontFamily = Poppins,
-                            modifier = Modifier.padding(bottom = 8.dp)
-                        )
-                        Divider(
-                            thickness = 0.5.dp,
-                            color = Color.LightGray,
-                            modifier = Modifier.padding(bottom = 10.dp)
-                        )
-                        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-                            Text(
-                                text = "3 items • 2 persons",
-                                fontFamily = Poppins,
-                                fontSize = 11.sp,
-                                color = Color(0xFF888888)
+                        Button(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(30.dp)
+                                .padding(start = 50.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                defblue
                             )
-                            Button(
-                                onClick = { /*TODO*/ },
-                                modifier = Modifier.fillMaxWidth().height(30.dp).padding(start = 50.dp),
-                                colors = ButtonDefaults.buttonColors(
-                                    defblue
-                                )
-                            ) {
-                                Text(text = "See Detail", fontFamily = Poppins, fontSize = 11.sp)
-                            }
+                        ) {
+                            Text(text = "See Detail", fontFamily = Poppins, fontSize = 11.sp)
                         }
                     }
                 }
@@ -419,7 +434,6 @@ fun HistoryFrame() {
         }
     }
 }
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SplitBillPreview() {
