@@ -1,4 +1,4 @@
-package com.example.alp
+package com.example.alp.ui.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,23 +17,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,9 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.alp.ui.theme.buttonColor
-import com.example.alp.ui.theme.forpassCol
-import com.example.alp.ui.theme.line
+import com.example.alp.R
+import com.example.alp.ui.theme.Poppins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -68,31 +54,7 @@ fun BudgetingView() {
             .padding(16.dp)
     ){
 //      Top Bar
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        ){
-            Image(
-                painter = painterResource(R.drawable.baseline_window_24),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(24.dp)
-            )
-            Text(
-                text = "Budgeting",
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-            )
-            Image(
-                painter = painterResource(R.drawable.baseline_notifications_24),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(24.dp)
-            )
-        }
+        NavBar(title = "Budgeting")
         Row (
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -459,6 +421,47 @@ fun BudgetingView() {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun NavBar(title: String){
+    Row (
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 16.dp)
+    ){
+        IconButton(
+            onClick = { /*TODO*/ }
+        ){
+            Image(
+                painter = painterResource(R.drawable.baseline_window_24),
+                contentDescription = "Home",
+                modifier = Modifier
+                    .size(30.dp)
+            )
+        }
+
+        Text(
+            text = title,
+            fontFamily = Poppins,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 18.sp,
+        )
+
+        IconButton(
+            onClick = { /*TODO*/ }
+        ){
+            Image(
+                painter = painterResource(R.drawable.baseline_notifications_24),
+                contentDescription = "Notifications",
+                modifier = Modifier
+                    .size(30.dp)
+            )
+        }
+
     }
 }
 

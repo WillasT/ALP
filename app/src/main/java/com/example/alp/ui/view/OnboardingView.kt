@@ -27,18 +27,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.alp.R
+import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.buttonColor
 import com.example.alp.ui.theme.textGede
 
 @Composable
 fun OnboardingView() {
 
-    val popfamilybold = FontFamily(
-        Font(R.font.poppins_bold, FontWeight.Bold)
-    )
-    val popfamilyreg = FontFamily(
-        Font(R.font.poppins_regular, FontWeight.Normal)
-    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +61,7 @@ fun OnboardingView() {
         ) {
             TextGede(
                 text = "Spend Smarter",
-                modifier = Modifier.padding(top = 0.dp)
+                modifier = Modifier.padding(top = 0.dp),
             )
             TextGede(
                 text = "Save More",
@@ -86,16 +81,19 @@ fun OnboardingView() {
                 Text(
                     text = "Get Started",
 //                    modifier = Modifier.padding(horizontal = 84.dp)
-                    //        fontFamily = popfamilyreg
+                    fontFamily = Poppins,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 15.sp
 
                 )
             }
             Row {
                 Text(
                     text = "Already Have Account?",
-                    //        fontFamily = popfamilyreg,
+                    modifier = Modifier.padding(top = 12.dp),
+                    fontFamily = Poppins,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(top = 13.dp)
+
 
                     )
                 TextButton(
@@ -103,7 +101,8 @@ fun OnboardingView() {
                 ) {
                     Text(
                         text = "Log In",
-                        fontFamily = popfamilybold,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
                         color = buttonColor,
                     )
@@ -125,7 +124,7 @@ fun TextGede(
         text = text,
         fontSize = 36.sp,
         fontWeight = FontWeight.SemiBold,
-//        fontFamily = popfamilyreg
+        fontFamily = Poppins,
         color = textGede,
         modifier = modifier
     )

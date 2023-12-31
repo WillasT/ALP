@@ -56,6 +56,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.alp.R
+import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.buttonColor
 import com.example.alp.ui.theme.cekboxcolor
 import com.example.alp.ui.theme.forpassCol
@@ -74,12 +75,6 @@ fun LoginView() {
     var isEmailValid by rememberSaveable { mutableStateOf(true) }
     var isPasswordValid by rememberSaveable { mutableStateOf(true) }
 
-    val popfamilybold = FontFamily(
-        Font(R.font.poppins_bold, FontWeight.Bold)
-    )
-    val popfamilyreg = FontFamily(
-        Font(R.font.poppins_regular, FontWeight.Normal)
-    )
 
     val snackbarHostState = remember { SnackbarHostState() }
 //    val scope = rememberCoroutineScope()
@@ -98,7 +93,8 @@ fun LoginView() {
 
                 Text(
                     text = "Hi, Welcome Back!\uD83D\uDC4B",
-                    fontFamily = popfamilybold,
+                    fontFamily = Poppins,
+                    fontWeight = FontWeight.Bold,
                     fontSize = 24.sp
                 )
                 Card(
@@ -109,7 +105,7 @@ fun LoginView() {
                 ) {
                     Text(
                         text = "Username or email",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 14.sp,
                         color = Color(0xFF695C5C),
                         modifier = Modifier.padding(start = 36.dp, bottom = 6.dp)
@@ -131,7 +127,7 @@ fun LoginView() {
                     )
                     Text(
                         text = "Password",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 14.sp,
                         color = Color(0xFF695C5C),
                         modifier = Modifier.padding(start = 36.dp, top = 16.dp, bottom = 6.dp)
@@ -169,7 +165,7 @@ fun LoginView() {
                     )
                     Text(
                         text = "Remember Me",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold,
                         modifier = Modifier
@@ -186,7 +182,7 @@ fun LoginView() {
                         ) {
                             Text(
                                 text = "Forgot Password?",
-                                fontFamily = popfamilyreg,
+                                fontFamily = Poppins,
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = forpassCol
@@ -211,7 +207,7 @@ fun LoginView() {
                 ) {
                     Text(
                         text = "Login",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -227,7 +223,7 @@ fun LoginView() {
                     Lines()
                     Text(
                         text = "Or With",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 18.sp,
                         modifier = Modifier.padding(horizontal = 12.dp)
                     )
@@ -268,7 +264,7 @@ fun LoginView() {
                             Text(
                                 text = "Login with Google",
                                 color = loggoogletxt,
-                                fontFamily = popfamilyreg,
+                                fontFamily = Poppins,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                             )
@@ -287,7 +283,7 @@ fun LoginView() {
                 ) {
                     Text(
                         text = "Don't have an account?",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(bottom = 10.dp)
@@ -298,7 +294,8 @@ fun LoginView() {
                         Text(
                             text = "Sign Up",
                             color = buttonColor,
-                            fontFamily = popfamilybold,
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Bold,
                             fontSize = 16.sp
                         )
                     }
@@ -354,7 +351,7 @@ fun CustomEmailField(
         placeholder = {
             Text(
                 text = text,
-//                fontFamily = popfamilyreg,
+                fontFamily = Poppins,
                 fontSize = 16.sp,
                 color = textfilecol
             )
@@ -367,15 +364,15 @@ fun CustomEmailField(
         shape = RoundedCornerShape(12.dp),
         isError = !isEmailValid
     )
-            if (!isEmailValid) {
-                Text(
-                    text = "Invalid Email Format",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 40.dp),
-                    Color.Red
-                )
-            }
+    if (!isEmailValid) {
+        Text(
+            text = "Invalid Email Format",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp),
+            Color.Red
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -395,7 +392,10 @@ fun CustomPasswordField(
         onValueChange = onValueChanged,
         placeholder = {
             Text(
-                text = text
+                text = text,
+                fontFamily = Poppins,
+                fontSize = 16.sp,
+                color = textfilecol
             )
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -423,7 +423,8 @@ fun CustomPasswordField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
-            Color.Red
+            Color.Red,
+            fontFamily = Poppins
         )
 
     }

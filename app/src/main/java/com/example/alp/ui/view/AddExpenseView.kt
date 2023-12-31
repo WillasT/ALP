@@ -51,6 +51,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.alp.R
+import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.buttonColor
 import com.example.alp.ui.theme.textfilecol
 
@@ -71,7 +72,7 @@ fun AddExpenseView() {
                     .background(Color.White),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Nav()
+                NavExpense()
                 Image(
                     painter = painterResource(id = R.drawable.add_expense_image),
                     contentDescription = "Add Expense Image",
@@ -86,7 +87,7 @@ fun AddExpenseView() {
                 ) {
                     Text(
                         text = "Expense Name",
-//                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 15.sp,
                         modifier = Modifier.padding(start = 36.dp, bottom = 6.dp)
                     )
@@ -106,7 +107,7 @@ fun AddExpenseView() {
                     )
                     Text(
                         text = "Price",
-//                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 15.sp,
                         modifier = Modifier.padding(start = 36.dp, top = 16.dp, bottom = 6.dp)
                     )
@@ -124,7 +125,7 @@ fun AddExpenseView() {
                     )
                     Text(
                         text = "Category",
-//                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 15.sp,
                         modifier = Modifier.padding(start = 36.dp, top = 16.dp, bottom = 6.dp)
                     )
@@ -143,7 +144,8 @@ fun AddExpenseView() {
                         Text(
                             text = "Add",
 //                    modifier = Modifier.padding(horizontal = 84.dp)
-                            //        fontFamily = popfamilyreg
+                            fontFamily = Poppins,
+                            fontSize = 15.sp
 
                         )
                     }
@@ -156,7 +158,7 @@ fun AddExpenseView() {
 }
 
 @Composable
-fun Nav() {
+fun NavExpense() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -175,6 +177,7 @@ fun Nav() {
         }
         Text(
             text = "Add Expense",
+            fontFamily = Poppins,
             fontWeight = FontWeight.SemiBold,
             fontSize = 18.sp,
             modifier = Modifier.padding(top = 12.dp)
@@ -202,7 +205,7 @@ fun CategoryDropdown() {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
         ExposedDropdownMenuBox(
             expanded = isExpanded,
             onExpandedChange = { isExpanded = it },
@@ -220,13 +223,13 @@ fun CategoryDropdown() {
                 placeholder = {
                     Text(
                         text = "Choose One",
-//                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 16.sp,
                         color = textfilecol
                     )
                 },
                 colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(focusedBorderColor = buttonColor),
-                modifier = Modifier.menuAnchor(),
+                modifier = Modifier.menuAnchor().fillMaxWidth().padding(end = 36.dp),
                 shape = RoundedCornerShape(12.dp)
             )
 
@@ -236,21 +239,34 @@ fun CategoryDropdown() {
                 modifier = Modifier.background(Color.White)
             ) {
                 DropdownMenuItem(
-                    text = { Text(text = "Category 1") },
+                    text = {
+                        Text(
+                            text = "Category 1", fontFamily = Poppins,
+                        )
+                    },
                     onClick = {
                         category = "Category 1"
                         isExpanded = false
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text(text = "Category 2") },
+                    text = {
+                        Text(
+                            text = "Category 2",
+                            fontFamily = Poppins,
+                        )
+                    },
                     onClick = {
                         category = "Category 2"
                         isExpanded = false
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text(text = "Category 3") },
+                    text = {
+                        Text(
+                            text = "Category 3", fontFamily = Poppins,
+                        )
+                    },
                     onClick = {
                         category = "Category 3"
                         isExpanded = false

@@ -47,6 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.alp.R
+import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.buttonColor
 import com.example.alp.ui.theme.linegoogle
 import com.example.alp.ui.theme.loggoogletxt
@@ -63,12 +64,6 @@ fun RegisterView() {
     var isEmailValid by rememberSaveable { mutableStateOf(true) }
     var isPasswordValid by rememberSaveable { mutableStateOf(true) }
 
-    val popfamilybold = FontFamily(
-        Font(R.font.poppins_bold, FontWeight.Bold)
-    )
-    val popfamilyreg = FontFamily(
-        Font(R.font.poppins_regular, FontWeight.Normal)
-    )
 
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -86,12 +81,13 @@ fun RegisterView() {
 
                 Text(
                     text = "Create an Account",
-                    fontFamily = popfamilybold,
+                    fontFamily = Poppins,
+                    fontWeight = FontWeight.Bold,
                     fontSize = 24.sp
                 )
                 Text(
                     text = "Manage your financial today!",
-                    fontFamily = popfamilyreg,
+                    fontFamily = Poppins,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 13.sp,
                 )
@@ -171,7 +167,7 @@ fun RegisterView() {
                     ) {
                     Text(
                         text = "Sign Up",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -187,7 +183,7 @@ fun RegisterView() {
                     Lines()
                     Text(
                         text = "Or With",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 18.sp,
                         modifier = Modifier.padding(horizontal = 12.dp)
                     )
@@ -228,7 +224,7 @@ fun RegisterView() {
                             Text(
                                 text = "Sign Up with Google",
                                 color = loggoogletxt,
-                                fontFamily = popfamilyreg,
+                                fontFamily = Poppins,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                             )
@@ -247,7 +243,7 @@ fun RegisterView() {
                 ) {
                     Text(
                         text = "Already have an account?",
-                        fontFamily = popfamilyreg,
+                        fontFamily = Poppins,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(bottom = 10.dp)
@@ -258,7 +254,8 @@ fun RegisterView() {
                         Text(
                             text = "Login",
                             color = buttonColor,
-                            fontFamily = popfamilybold,
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Bold,
                             fontSize = 16.sp
                         )
                     }
@@ -286,7 +283,7 @@ fun CustomTextField(
         placeholder = {
             Text(
                 text = text,
-//                        fontFamily = popfamilyreg,
+                fontFamily = Poppins,
                 fontSize = 16.sp,
                 color = textfilecol
             )

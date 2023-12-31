@@ -46,12 +46,14 @@ import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.defblue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Shape
-import com.example.alp.ui.theme.background
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SplitBill() {
-    LazyColumn(Modifier.fillMaxWidth().background(Color.White)) {
+    LazyColumn(
+        Modifier
+            .fillMaxWidth()
+            .background(Color.White)) {
         item {
             MainNavbar()
         }
@@ -244,7 +246,7 @@ fun ActionBar() {
             }
         }
         if (activeClicked) {
-                ActiveFrame()
+            ActiveFrame()
         } else if (historyClicked) {
             HistoryFrame()
         } else {
@@ -273,7 +275,7 @@ fun ActiveFrame() {
 }
 
 @Composable
-fun ActiveCard(){
+fun ActiveCard() {
     OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -335,7 +337,12 @@ fun ActiveCard(){
                                 defblue
                             ), contentPadding = PaddingValues(5.dp)
                         ) {
-                            Text(text = "See Detail", fontFamily = Poppins, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+                            Text(
+                                text = "See Detail",
+                                fontFamily = Poppins,
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
                         }
                     }
                 }
@@ -343,6 +350,7 @@ fun ActiveCard(){
         }
     }
 }
+
 @Composable
 fun HistoryFrame() {
     Column(
@@ -363,7 +371,7 @@ fun HistoryFrame() {
 }
 
 @Composable
-fun HistoryCard(){
+fun HistoryCard() {
     OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -434,6 +442,7 @@ fun HistoryCard(){
         }
     }
 }
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SplitBillPreview() {

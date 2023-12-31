@@ -14,6 +14,14 @@ val linegoogle = Color(0xFF989898)
 val cekboxcolor = Color(0xFFCCD0DF)
 val textfilecol = Color(0xFF646464)
 
+val cardcolor1a = Color(0xFF262626)
+val cardcolor1b= Color(0xFF4F4F4F)
+val cardcolor2a = Color(0xFF5047AD)
+val cardcolor2b = Color(0xFF8076EE)
+val cardcolor3a = Color(0xFF3E9B9B)
+val cardcolor3b = Color(0xFF86D2D2)
+
+
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
