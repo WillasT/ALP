@@ -41,11 +41,11 @@ import com.example.alp.ui.view.split_bill.MainNavbar
 
 @Composable
 fun CardManagementView() {
-    LazyColumn{
+    LazyColumn {
         item {
             NavBar(title = "All Cards")
         }
-        item (){
+        item {
             Cards(
                 painter = painterResource(id = R.drawable.visacard),
                 color1 = cardcolor1a,
@@ -81,6 +81,9 @@ fun Cards(painter: Painter, color1: Color, color2: Color) {
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
             colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 6.dp
+            ),
             shape = RoundedCornerShape(20.dp)
         ) {
             Column(
