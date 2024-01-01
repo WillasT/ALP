@@ -1,5 +1,6 @@
 package com.example.alp.ui.view
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -11,12 +12,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -54,6 +57,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.example.alp.R
 import com.example.alp.ui.theme.Poppins
 import com.example.alp.ui.theme.backbills
@@ -98,31 +102,23 @@ fun BudgetingMenu() {
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
+                horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
 //                Vector Data itu la
-                Image(
-                    painter = painterResource(R.drawable.profile_pic),
-                    contentDescription = "Pie chart",
-                    modifier = Modifier
-                        .size(120.dp)
-                        .clip(RoundedCornerShape(64.dp))
-                )
 //                ini yang asli cuma bingumg implementasinya
-//                PieChart(
-//                    data = mapOf(
-//                        Pair("Transportation", 240),
-//                        Pair("Bills", 80),
-//                        Pair("Food & Drink", 90)
-//                    )
-//                )
+                PieChart(
+                    data = mapOf(
+                        Pair("Transportation", 240),
+                        Pair("Bills", 80),
+                        Pair("Food & Drink", 90)
+                    )
+                )
             }
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start,
-                modifier = Modifier.padding(start = 36.dp)
+                modifier = Modifier.padding(start = 48.dp)
             ) {
                 BudgetIcons(
                     backcolor = backtrans,
@@ -156,28 +152,100 @@ fun BudgetingMenu() {
             }
         }
         SpendCard()
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .shadow(2.dp, shape = RoundedCornerShape(16.dp)),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
 
-        ExpensesCard(
-            backcolor = backtrans,
-            imageVector = Icons.Default.DirectionsCar,
-            iconname = "Transport Icon",
-            iconcolor = piecharttrans,
-            icontitle = "Auto & Transport",
-            fontSize = 15.sp,
-            fontColor = Color.Black
-        )
+            ) {
+            Column(
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(20.dp))
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(16.dp)
+            ) {
+                ExpensesCard(
+                    backcolor = backtrans,
+                    imageVector = Icons.Default.DirectionsCar,
+                    iconname = "Transport Icon",
+                    iconcolor = piecharttrans,
+                    icontitle = "Auto & Transport",
+                    fontSize = 15.sp,
+                    fontColor = Color.Black,
+                    totalExpenses = "Rp 500.000",
+                )
+                DetailsExpensesCard(
+                    detailsTitle = "Auto & Transport",
+                    detailsExpenses = "Rp 300.000",
+                    detailsRemainder = "Left Rp 123.345",
+                    color = piecharttrans,
+                    newProgress = 0.7f
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                DetailsExpensesCard(
+                    detailsTitle = "Auto Insurance",
+                    detailsExpenses = "Rp 200.000",
+                    detailsRemainder = "Left Rp 134.290",
+                    color = piecharttrans,
+                    newProgress = 0.3f
+                )
+            }
+        }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .shadow(2.dp, shape = RoundedCornerShape(16.dp)),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
 
-        ExpensesCard(
-            backcolor = backbills,
-            imageVector = Icons.Default.Receipt,
-            iconname = "Bills Icon",
-            iconcolor = piechartbills,
-            icontitle = "Bill & Utility",
-            fontSize = 15.sp,
-            fontColor = Color.Black
-        )
+            ) {
+            Column(
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(20.dp))
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(16.dp)
+            ) {
 
+                ExpensesCard(
+                    backcolor = backbills,
+                    imageVector = Icons.Default.Receipt,
+                    iconname = "Bills Icon",
+                    iconcolor = piechartbills,
+                    icontitle = "Bill & Utility",
+                    fontSize = 15.sp,
+                    fontColor = Color.Black,
+                    totalExpenses = "Rp 320.000",
+                )
+                DetailsExpensesCard(
+                    detailsTitle = "Subscription",
+                    detailsExpenses = "Rp 120.000",
+                    detailsRemainder = "Left Rp 90.120",
+                    color = piechartbills,
+                    newProgress = 0.1f
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                DetailsExpensesCard(
+                    detailsTitle = "Maintenance",
+                    detailsExpenses = "Rp 100.000",
+                    detailsRemainder = "Left Rp 56.345",
+                    color = piechartbills,
+                    newProgress = 0.9f
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                DetailsExpensesCard(
+                    detailsTitle = "House Service",
+                    detailsExpenses = "Rp 100.000",
+                    detailsRemainder = "Left Rp 67.123",
+                    color = piechartbills,
+                    newProgress = 0.6f
+                )
+            }
+        }
     }
 }
 
@@ -219,9 +287,7 @@ fun NavBar(title: String) {
                     .size(30.dp)
             )
         }
-
     }
-
 }
 
 
@@ -293,13 +359,7 @@ fun SpendCard() {
             }
 
             // Bottom bar
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(8.dp)
-                    .clip(RoundedCornerShape(48.dp))
-                    .background(cekboxcolor)
-            )
+            CustomSpendProgressBar()
         }
     }
 }
@@ -313,56 +373,42 @@ fun ExpensesCard(
     iconcolor: Color,
     icontitle: String,
     fontSize: TextUnit,
-    fontColor: Color
+    fontColor: Color,
+    totalExpenses: String,
 ) {
-    Card(
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(16.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-
-        ) {
-        Column(
-            modifier = Modifier
-                .clip(shape = RoundedCornerShape(20.dp))
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(16.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            ) {
-                BudgetIcons(
-                    backcolor = backcolor,
-                    imageVector = imageVector,
-                    iconname = iconname,
-                    iconcolor = iconcolor,
-                    icontitle = icontitle,
-                    fontSize = fontSize,
-                    fontColor = fontColor
-                )
-                Text(
-                    text = "Rp 500.000",
-                    fontFamily = Poppins,
-                    fontSize = 14.sp,
-                    color = Color.LightGray
-                )
-            }
-            ExpensesCardDetails(detailsTitle = "Auto & Transport")
-            Spacer(modifier = Modifier.height(12.dp))
-            ExpensesCardDetails(detailsTitle = "Bills")
-        }
+            .padding(bottom = 16.dp)
+    ) {
+        BudgetIcons(
+            backcolor = backcolor,
+            imageVector = imageVector,
+            iconname = iconname,
+            iconcolor = iconcolor,
+            icontitle = icontitle,
+            fontSize = fontSize,
+            fontColor = fontColor
+        )
+        Text(
+            text = totalExpenses,
+            fontFamily = Poppins,
+            fontSize = 14.sp,
+            color = Color.Gray
+        )
     }
 }
 
 @Composable
-fun ExpensesCardDetails(
+fun DetailsExpensesCard(
     detailsTitle: String,
+    detailsExpenses: String,
+    detailsRemainder: String,
+    color: Color,
+    newProgress: Float
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -378,7 +424,7 @@ fun ExpensesCardDetails(
             fontSize = 16.sp,
         )
         Text(
-            text = "Rp 1.500.000",
+            text = detailsExpenses,
             fontFamily = Poppins,
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
@@ -390,21 +436,19 @@ fun ExpensesCardDetails(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Box(
-            modifier = Modifier
-                .padding(top = 8.dp)
-                .width(160.dp)
-                .height(4.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(cekboxcolor)
+        CustomProgressBar(
+            color = color,
+            newProgress = newProgress
         )
         Text(
-            text = "Left Rp 1.200.000",
+            text = detailsRemainder,
             fontFamily = Poppins,
             fontSize = 12.sp,
+            color = Color.Gray
         )
     }
 }
+
 
 @Composable
 fun BudgetIcons(
@@ -469,7 +513,7 @@ fun PieChart(
 
     val animateSize by animateFloatAsState(
         targetValue = if (animationPlayed) {
-            radiusOuter.value * 2f
+            radiusOuter.value * 1f
         } else {
             0f
         },
@@ -498,8 +542,8 @@ fun PieChart(
     }
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+//        modifier = Modifier.fillMaxWidth(),
+//        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier.size(animateSize.dp),
@@ -522,79 +566,219 @@ fun PieChart(
             }
         }
 
-        DetailsPieChart(
-            data = data,
-            colors = colors
-        )
+//        DetailsPieChart(
+//            data = data,
+//            colors = colors
+//        )
     }
 }
 
+//@Composable
+//fun DetailsPieChart(
+//    data: Map<String, Int>,
+//    colors: List<Color>
+//) {
+//    Column(
+//        modifier = Modifier
+//            .padding(top = 60.dp)
+//            .fillMaxWidth()
+//    ) {
+//        data.values.forEachIndexed { index, value ->
+//            DetailsPieChartItem(
+//                data = Pair(data.keys.elementAt(index), value),
+//                color = colors[index]
+//            )
+//        }
+//    }
+//}
+
+//@Composable
+//fun DetailsPieChartItem(
+//    data: Pair<String, Int>,
+//    height: Dp = 45.dp,
+//    color: Color
+//) {
+//    Surface(
+//        modifier = Modifier
+//            .padding(vertical = 10.dp, horizontal = 30.dp),
+//        color = Color.Transparent
+//    ) {
+//        Row(
+//            modifier = Modifier.fillMaxWidth(),
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Box(
+//                modifier = Modifier
+//                    .background(
+//                        color = color,
+//                        shape = RoundedCornerShape(10.dp)
+//                    )
+//                    .size(height)
+//            )
+//
+//            Column(
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                Text(
+//                    text = data.first,
+//                    fontFamily = Poppins,
+//                    fontWeight = FontWeight.Medium,
+//                    fontSize = 22.sp,
+//                    modifier = Modifier.padding(start = 15.dp)
+//                )
+//                Text(
+//                    text = data.first,
+//                    fontFamily = Poppins,
+//                    fontWeight = FontWeight.Medium,
+//                    fontSize = 22.sp,
+//                    modifier = Modifier.padding(start = 15.dp),
+//                    color = Color.Gray
+//                )
+//            }
+//        }
+//    }
+//}
+
 @Composable
-fun DetailsPieChart(
-    data: Map<String, Int>,
-    colors: List<Color>
-) {
+fun CustomProgressBar(color: Color, newProgress: Float) {
+    var progress by remember {
+        mutableStateOf(0f)
+    }
+    val size by animateFloatAsState(
+        targetValue = progress,
+        tween(
+            durationMillis = 1000,
+            delayMillis = 200,
+            easing = LinearOutSlowInEasing
+        )
+    )
+
     Column(
         modifier = Modifier
-            .padding(top = 60.dp)
-            .fillMaxWidth()
+            .padding(top = 6.dp)
     ) {
-        data.values.forEachIndexed { index, value ->
-            DetailsPieChartItem(
-                data = Pair(data.keys.elementAt(index), value),
-                color = colors[index]
+        Box(
+            modifier = Modifier
+                .height(6.dp)
+                .width(160.dp)
+        ) {
+            //background progress bar
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(9.dp))
+                    .background(cekboxcolor)
+            )
+            //progress progress bar
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(size)
+                    .fillMaxHeight()
+                    .clip(RoundedCornerShape(9.dp))
+                    .background(color)
+                    .animateContentSize()
             )
         }
     }
+    LaunchedEffect(key1 = true) {
+        progress = newProgress
+    }
 }
 
 @Composable
-fun DetailsPieChartItem(
-    data: Pair<String, Int>,
-    height: Dp = 45.dp,
-    color: Color
-) {
-    Surface(
+fun CustomSpendProgressBar() {
+    var progress1 by remember {
+        mutableStateOf(0f)
+    }
+    var progress2 by remember {
+        mutableStateOf(0f)
+    }
+    var progress3 by remember {
+        mutableStateOf(0f)
+    }
+    val size1 by animateFloatAsState(
+        targetValue = progress1,
+        tween(
+            durationMillis = 1000,
+            delayMillis = 200,
+            easing = LinearOutSlowInEasing
+        )
+    )
+    val size2 by animateFloatAsState(
+        targetValue = progress2,
+        tween(
+            durationMillis = 1000,
+            delayMillis = 200,
+            easing = LinearOutSlowInEasing
+        )
+    )
+    val size3 by animateFloatAsState(
+        targetValue = progress3,
+        tween(
+            durationMillis = 1000,
+            delayMillis = 200,
+            easing = LinearOutSlowInEasing
+        )
+    )
+
+    Column(
         modifier = Modifier
-            .padding(vertical = 10.dp, horizontal = 30.dp),
-        color = Color.Transparent
+            .padding(top = 2.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier
+                .height(12.dp)
+                .fillMaxWidth()
         ) {
+            //background progress bar
             Box(
                 modifier = Modifier
-                    .background(
-                        color = color,
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .size(height)
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(9.dp))
+                    .background(cekboxcolor)
             )
-
-            Column(
+            Row (
                 modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = data.first,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(start = 15.dp)
+            ){
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(size1)
+                        .fillMaxHeight()
+                        .clip(RoundedCornerShape(9.dp, 0.dp, 0.dp, 9.dp))
+                        .background(piechartbills)
+                        .animateContentSize()
+                        .zIndex(0f)
                 )
-                Text(
-                    text = data.first,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(start = 15.dp),
-                    color = Color.Gray
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(size2)
+                        .fillMaxHeight()
+                        .zIndex(1f)
+                        .background(piechartfooddrink)
+                        .animateContentSize()
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(size3)
+                        .fillMaxHeight()
+                        .clip(RoundedCornerShape(0.dp, 9.dp, 9.dp, 0.dp))
+                        .background(piecharttrans)
+                        .animateContentSize()
+                        .zIndex(0f)
                 )
             }
         }
     }
+    LaunchedEffect(key1 = true) {
+        progress1 = 0.2f
+    }
+    LaunchedEffect(key1 = true) {
+        progress2 = 0.3f
+    }
+    LaunchedEffect(key1 = true) {
+        progress3 = 0.6f
+    }
 }
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BudgetingPreview() {
